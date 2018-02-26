@@ -1,0 +1,12 @@
+{
+	"name": "rinu/multi-curl",
+	"description": "",
+	"require": {
+		"php": "^7.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"MultiCurl\\": "src/"
+		}
+	}
+}

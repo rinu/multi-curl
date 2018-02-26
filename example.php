@@ -1,28 +1,18 @@
 <?php
 
-require(__DIR__ . '/MultiCurl.php');
-
-function getHandle($url) {
-	$ch = curl_init();
-	curl_setopt_array($ch, [
-		CURLOPT_URL => $url,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_CONNECTTIMEOUT => 5
-	]);
-	return $ch;
-}
+require(__DIR__ . '/bootstrap.php');
 
 $totalTime = microtime(true);
 
-$multi = new MultiCurl();
+$multi = new \MultiCurl\MultiCurl();
 
 $maxSleep = 5;
 
 $keys = [];
 $addCurlHandles = microtime(true);
-$keys[] = $multi->addCurl(getHandle('http://localhost/sleep.php?sleep=' . $maxSleep));
+$keys[] = $multi->addCurl(getHandle($maxSleep));
 for ($i = 0; $i < 2; $i++) {
-	$keys[] = $multi->addCurl(getHandle('http://localhost/sleep.php?sleep=' . random_int(1, $maxSleep)));
+	$keys[] = $multi->addCurl(getHandle(random_int(1, $maxSleep)));
 }
 echo 'Add curl handles: ' . (microtime(true) - $addCurlHandles) . "\n";
 

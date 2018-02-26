@@ -1,5 +1,7 @@
 <?php
 
+namespace MultiCurl;
+
 class MultiCurl {
 	private $mc;
 	private $running;
