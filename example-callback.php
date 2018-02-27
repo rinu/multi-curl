@@ -8,10 +8,14 @@ $multi = new \MultiCurl\Callback();
 
 $maxSleep = 3;
 
-$multi->requestAsync(getHandle($maxSleep), function($response) {
+$asyncCallback = function ($response) {
 	echo "Async request completed in {$response['info']['total_time']}\n";
 	echo $response['response'] . "\n";
-});
+};
+
+$multi->requestAsync(getHandle($maxSleep - 2), $asyncCallback);
+$multi->requestAsync(getHandle($maxSleep), $asyncCallback);
+$multi->requestAsync(getHandle($maxSleep - 1), $asyncCallback);
 
 $multi->requestSync(getHandle($maxSleep - 1), function($response) {
 	echo "Sync request completed in {$response['info']['total_time']}\n";
