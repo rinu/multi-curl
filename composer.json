@@ -2,7 +2,8 @@
 	"name": "rinu/multi-curl",
 	"description": "",
 	"require": {
-		"php": "^7.0"
+		"php": ">=7.4",
+		"ext-curl": "*"
 	},
 	"autoload": {
 		"psr-4": {
